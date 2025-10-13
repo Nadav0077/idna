@@ -3,7 +3,6 @@
 import argparse, collections, datetime, os, re, sys, unicodedata
 from urllib.request import urlopen
 
-# Use intranges.intranges_from_list() from the sibling idna directory
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "idna"))
 from intranges import intranges_from_list
 
@@ -743,48 +742,6 @@ def uts46_tests(ucdata):
         else:
             yield ("        self.assertRaises(idna.IDNAError, idna.encode, {}, strict=True)".format(repr(source)))
         yield ""
-
-
-#        self.assertEqual(idna.uts46_remap("A_", std3_rules=False), "a_")
-#        self.assertRaises(idna.InvalidCodepoint, idna.uts46_remap, "A_", std3_rules=True)
-
-
-"""
-    try:
-            output = idna.decode(source, uts46=True, strict=True)
-            if to_unicode_status != "[]":
-                self.fail("decode() did not emit required error {} for {}".format(to_unicode, repr(source)))
-            self.assertEqual(output, to_unicode, "unexpected decode() output")
-        except (idna.IDNAError, UnicodeError, ValueError) as exc:
-            if str(exc).startswith("Unknown"):
-                raise unittest.SkipTest("Test requires support for a newer version of Unicode than this Python supports")
-            if to_unicode_status == "[]":
-                raise
-
-        try:
-            output = idna.encode(source, uts46=True, strict=True).decode("ascii")
-            if to_ascii_status != "[]":
-                self.fail("encode() did not emit required error {} for {}".format(to_ascii_status, repr(source)))
-            self.assertEqual(output, to_ascii, "unexpected encode() output")
-        except (idna.IDNAError, UnicodeError, ValueError) as exc:
-            if str(exc).startswith("Unknown"):
-                raise unittest.SkipTest("Test requires support for a newer version of Unicode than this Python supports")
-            if to_ascii_status == "[]":
-                raise
-
-        try:
-            output = idna.encode(source, uts46=True, strict=True, transitional=True).decode("ascii")
-            if to_ascii_t_status != "[]":
-                self.fail(
-                    "encode(transitional=True) did not emit required error {} for {}".format(to_ascii_t_status, repr(source))
-                )
-            self.assertEqual(output, to_ascii_t, "unexpected encode() output")
-        except (idna.IDNAError, UnicodeError, ValueError) as exc:
-            if str(exc).startswith("Unknown"):
-                raise unittest.SkipTest("Test requires support for a newer version of Unicode than this Python supports")
-            if to_ascii_t_status == "[]":
-                raise
-"""
 
 
 def make_libdata(args, ucdata):
